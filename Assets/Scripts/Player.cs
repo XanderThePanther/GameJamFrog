@@ -5,7 +5,8 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public int speed = 3;
-    public int jump = 10;
+    public int jumpForce = 10;
+    public int lives = 3;
     private InputSystem_Actions controls;
     private Rigidbody2D playerRb;
     private bool isGrounded = true;
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     {
         if (isGrounded)
         {
-            playerRb.linearVelocityY = jump;
+            playerRb.linearVelocityY = jumpForce;
             isGrounded = false;
         }
     }
