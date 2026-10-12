@@ -3,7 +3,7 @@ using UnityEngine;
 public class Fly : MonoBehaviour
 {
     public int speed = 5;
-    public int xBoundary = 10;
+    public int xBoundary = 15;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
