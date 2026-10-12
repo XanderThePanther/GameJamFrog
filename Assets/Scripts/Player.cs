@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
         controls.Player.Jump.started += OnJump;
         uiLivesTextElement.SetText("Lives: {0}", lives);
         uiScoreTextElement.SetText("Score: {0}", score);
+        playerRb.centerOfMass = Vector2.zero;
     }
 
     
@@ -34,6 +35,8 @@ public class Player : MonoBehaviour
         Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
         float xInput = moveInput.x;
         playerRb.linearVelocityX = (speed * xInput);
+
+        CenterRotation();
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -65,7 +68,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             lives--;
+            Destroy(collision.gameObject);
             uiLivesTextElement.SetText("Lives: {0}", lives);
         }
+    }
+
+    void CenterRotation()
+    {
+        Quaternion rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+        transform.rotation = rotation;
     }
 }
