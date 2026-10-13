@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &134586691
 Transform:
   m_ObjectHideFlags: 0
@@ -879,8 +879,10 @@ MonoBehaviour:
   jumpForce: 10
   lives: 3
   score: 0
+  timeLimit: 3
   uiLivesTextElement: {fileID: 1034559664}
   uiScoreTextElement: {fileID: 1976808682}
+  childObject: {fileID: 134586690}
 --- !u!61 &1709142623
 BoxCollider2D:
   m_ObjectHideFlags: 0

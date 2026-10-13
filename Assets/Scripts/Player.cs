@@ -9,11 +9,14 @@ public class Player : MonoBehaviour
     public int jumpForce = 10;
     public int lives = 3;
     public int score = 0;
+
+    public float timeLimit = 3f;
     private InputSystem_Actions controls;
     private Rigidbody2D playerRb;
     private bool isGrounded = true;
     [SerializeField] private TextMeshPro uiLivesTextElement;
     [SerializeField] private TextMeshPro uiScoreTextElement;
+    [SerializeField] private GameObject childObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,11 +35,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
-        float xInput = moveInput.x;
-        playerRb.linearVelocityX = (speed * xInput);
+        Movement();
 
         CenterRotation();
+
+        Action();
+
+        if(transform.position.y < -5)
+        {
+            lives = 0;
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -77,5 +85,42 @@ public class Player : MonoBehaviour
     {
         Quaternion rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
         transform.rotation = rotation;
+    }
+
+    void Movement()
+    {
+        Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
+        float xInput = moveInput.x;
+        if (xInput > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (xInput < 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        playerRb.linearVelocityX = (speed * xInput);
+    }
+
+    void Action()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            childObject.SetActive(true);
+            StartCoroutine(ActionTimeLimit());
+
+        }
+    }
+
+    private IEnumerator ActionTimeLimit()
+    {
+        // 1. Make the child appear
+        childObject.SetActive(true);
+
+        // 2. Wait for the specified time limit (e.g., 3 seconds)
+        yield return new WaitForSeconds(timeLimit);
+
+        // 3. Make the child disappear
+        childObject.SetActive(false);
     }
 }
