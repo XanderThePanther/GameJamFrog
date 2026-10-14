@@ -93,11 +93,11 @@ public class Player : MonoBehaviour
         float xInput = moveInput.x;
         if (xInput > 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3((float)-.6, (float).6, (float).6);
         }
         if (xInput < 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3((float).6, (float).6, (float).6);
         }
         playerRb.linearVelocityX = (speed * xInput);
     }
