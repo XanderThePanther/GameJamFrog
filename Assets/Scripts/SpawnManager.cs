@@ -5,9 +5,9 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enimies;
 
     private float spawnRangeX = 10;
-    private float spawnRangey = 3;
+    private float spawnRangey = 2.5f;
     private float startDelay = 2;
-    private float spawnInterval = 1.5f;
+    private float spawnInterval = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

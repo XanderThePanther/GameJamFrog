@@ -91,11 +91,11 @@ public class Player : MonoBehaviour
     {
         Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
         float xInput = moveInput.x;
-        if (xInput > 0)
+        if (xInput > 0 && isGrounded)
         {
             transform.localScale = new Vector3((float)-.6, (float).6, (float).6);
         }
-        if (xInput < 0)
+        if (xInput < 0 && isGrounded)
         {
             transform.localScale = new Vector3((float).6, (float).6, (float).6);
         }

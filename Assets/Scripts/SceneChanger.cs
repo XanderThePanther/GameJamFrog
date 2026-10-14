@@ -43,6 +43,8 @@ public class SceneChanger : MonoBehaviour
         if (scoreText != null) {
             Destroy(scoreText);
             }
+        stats = null;
         SceneManager.LoadScene("SampleScene");
+
     }
 }
