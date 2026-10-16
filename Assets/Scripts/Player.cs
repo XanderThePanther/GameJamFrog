@@ -24,7 +24,6 @@ public class Player : MonoBehaviour
         controls.Player.Enable();
         playerRb = GetComponent<Rigidbody2D>();
 
-        controls.Player.Jump.started += OnJump;
         uiLivesTextElement.SetText("Lives: {0}", lives);
         uiScoreTextElement.SetText("Score: {0}", score);
         playerRb.centerOfMass = Vector2.zero;
@@ -37,6 +36,8 @@ public class Player : MonoBehaviour
     {
         Movement();
 
+        Jump();
+
         CenterRotation();
 
         Action();
@@ -47,9 +48,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.J)))
         {
             playerRb.linearVelocityY = jumpForce;
             isGrounded = false;
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour
 
     void Action()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             childObject.SetActive(true);
             StartCoroutine(ActionTimeLimit());
@@ -114,13 +115,17 @@ public class Player : MonoBehaviour
 
     private IEnumerator ActionTimeLimit()
     {
-        // 1. Make the child appear
         childObject.SetActive(true);
 
-        // 2. Wait for the specified time limit (e.g., 3 seconds)
         yield return new WaitForSeconds(timeLimit);
 
-        // 3. Make the child disappear
         childObject.SetActive(false);
+    }
+
+    void OnDestroy()
+    {
+        
+            controls.Player.Disable();
+        controls.Dispose();
     }
 }

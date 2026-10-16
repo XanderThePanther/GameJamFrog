@@ -8,6 +8,7 @@ TagManager:
   - Fly
   - Enemy
   - Text
+  - HighScore
   layers:
   - Default
   - TransparentFX
