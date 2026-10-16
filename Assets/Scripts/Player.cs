@@ -7,14 +7,14 @@ public class Player : MonoBehaviour
 {
     public int speed = 3;
     public int jumpForce = 10;
-    public int lives = 3;
+    public int health = 3;
     public int score = 0;
 
     public float timeLimit = 3f;
     private InputSystem_Actions controls;
     private Rigidbody2D playerRb;
     private bool isGrounded = true;
-    [SerializeField] private TextMeshPro uiLivesTextElement;
+    [SerializeField] private TextMeshPro uiHealthTextElement;
     [SerializeField] private TextMeshPro uiScoreTextElement;
     [SerializeField] private GameObject childObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         controls.Player.Enable();
         playerRb = GetComponent<Rigidbody2D>();
 
-        uiLivesTextElement.SetText("Lives: {0}", lives);
+        uiHealthTextElement.SetText("Health: {0}", health);
         uiScoreTextElement.SetText("Score: {0}", score);
         playerRb.centerOfMass = Vector2.zero;
     }
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
         if(transform.position.y < -5)
         {
-            lives = 0;
+            health = 0;
         }
     }
 
@@ -76,9 +76,9 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            lives--;
+            health--;
             Destroy(collision.gameObject);
-            uiLivesTextElement.SetText("Lives: {0}", lives);
+            uiHealthTextElement.SetText("Lives: {0}", health);
         }
     }
 
@@ -126,6 +126,6 @@ public class Player : MonoBehaviour
     {
         
             controls.Player.Disable();
-        controls.Dispose();
+            controls.Dispose();
     }
 }

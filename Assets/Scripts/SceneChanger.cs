@@ -37,7 +37,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (stats != null)
         {
-            int health = stats.lives;
+            int health = stats.health;
             if (health <= 0)
             {
                 highScore = PlayerPrefs.GetInt("HighScore", 0);
