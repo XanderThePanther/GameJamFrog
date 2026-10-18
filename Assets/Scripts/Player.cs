@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public int health = 3;
     public int score = 0;
 
-    public float timeLimit = 3f;
+    public float timeLimit = 1f;
     private InputSystem_Actions controls;
     private Rigidbody2D playerRb;
     private bool isGrounded = true;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         {
             health--;
             Destroy(collision.gameObject);
-            uiHealthTextElement.SetText("Lives: {0}", health);
+            uiHealthTextElement.SetText("Health: {0}", health);
         }
     }
 

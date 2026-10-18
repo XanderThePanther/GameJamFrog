@@ -6,6 +6,8 @@ public class SpawnManager : MonoBehaviour
 
     private float spawnRangeX = 10;
     private float spawnRangey = 2.5f;
+
+    private float bottomSpawnRangeY = -3;
     private float startDelay = 2;
     private float spawnInterval = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,12 +29,12 @@ public class SpawnManager : MonoBehaviour
 
         if (spawnSide == 0)
         {
-            Vector2 spawnPositon = new Vector2(-spawnRangeX, Random.Range(-spawnRangey, spawnRangey));
+            Vector2 spawnPositon = new Vector2(-spawnRangeX, Random.Range(bottomSpawnRangeY, spawnRangey));
             Instantiate(enimies[index], spawnPositon, enimies[index].transform.rotation);
         }
         else
         {
-            Vector2 spawnPositon = new Vector2(spawnRangeX, Random.Range(-spawnRangey, spawnRangey));
+            Vector2 spawnPositon = new Vector2(spawnRangeX, Random.Range(bottomSpawnRangeY, spawnRangey));
             Quaternion rotation = Quaternion.Euler(0, 180, 0);
             Instantiate(enimies[index], spawnPositon, rotation);
         }
