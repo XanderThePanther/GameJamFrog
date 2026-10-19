@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public int health = 3;
     public int score = 0;
 
-    public float timeLimit = 1f;
+    public float timeLimit = .05f;
     private InputSystem_Actions controls;
     private Rigidbody2D playerRb;
     private bool isGrounded = true;
